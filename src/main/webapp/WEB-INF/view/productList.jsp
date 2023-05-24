@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -7,7 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Product List</h1>
+	<c:if test="${not empty message}">
+        <p>${message}</p>
+    </c:if>
+	<h1>Product Inventory</h1>
     <p>${productList}</p>
 </body>
 </html>

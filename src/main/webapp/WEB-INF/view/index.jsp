@@ -20,8 +20,6 @@
 	<main>
 		<h2>Welcome to our online store!</h2>
 		<p>Browse our selection of products and add them to your cart.</p>
-		<p>When you're ready to check out, just click the "Checkout" button.</p>
-		<p>Thank you for shopping with us!</p>
 	</main>
 	
 </body>

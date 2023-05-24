@@ -8,6 +8,5 @@
 </head>
 <body>
 	<a href="productInventory">Buy Products</a>
-	<a href="product">Cart</a>
 </body>
 </html>

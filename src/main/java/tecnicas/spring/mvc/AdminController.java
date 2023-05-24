@@ -23,22 +23,39 @@ public class AdminController {
 	                          @RequestParam("description") String description,
 	                          @RequestParam("price") double price,
 	                          Model model) {
-	    Product product = new Product(id, name, description, price);
-	    addProduct(product);
-	    
-	    StringBuilder sb = new StringBuilder();
+	    // Verificar si el producto ya existe por nombre
+	    boolean productExists = false;
 	    for (Product p : productList) {
-	        sb.append("ID: ").append(p.getId())
-	            .append(", Nombre: ").append(p.getName())
-	            .append(", Descripción: ").append(p.getDescription())
-	            .append(", Precio: ").append(p.getPrice())
-	            .append("<br>");
+	        if (p.getName().equals(name)) {
+	            productExists = true;
+	            break;
+	        }
 	    }
 	    
-	    model.addAttribute("productList", sb.toString());
+	    if (productExists) {
+	        // El producto ya existe, devolver un mensaje
+	        String message = "El producto '" + name + "' ya ha sido agregado anteriormente.";
+	        model.addAttribute("message", message);
+	    } else {
+	        // El producto no existe, agregarlo a la lista
+	        Product product = new Product(id, name, description, price);
+	        addProduct(product);
+	        
+	        StringBuilder sb = new StringBuilder();
+	        for (Product p : productList) {
+	            sb.append("ID: ").append(p.getId())
+	                .append(", Nombre: ").append(p.getName())
+	                .append(", Descripción: ").append(p.getDescription())
+	                .append(", Precio: ").append(p.getPrice())
+	                .append("<br>");
+	        }
+	        
+	        model.addAttribute("productList", sb.toString());
+	    }
 	    
 	    return "productList";
 	}
+
 
 	@GetMapping("/eliminated")
     public String showEliminated() {
@@ -106,8 +123,8 @@ public class AdminController {
 	public String showShoppingCart(Model model) {
 		StringBuilder sb = new StringBuilder();
 	    for (Product p : shoppingCart) {
-	            sb.append("Nombre: ").append(p.getName())
-	            .append(", Precio: ").append(p.getPrice())
+	            sb.append(p.getName())
+	            .append(", Price: ").append(p.getPrice())
 	            .append("<br>");
 	    }
 	    

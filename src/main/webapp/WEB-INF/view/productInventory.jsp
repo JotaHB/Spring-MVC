@@ -8,12 +8,12 @@
     <title>Product Inventory</title>
 </head>
 <body>
-    <h1>Product Inventory</h1>
+    <h1>Product List</h1>
     <ul>
         <c:forEach var="product" items="${productInventory}">
             <li><a href="addToCart?id=${product.id}">
                 ${product.name}<br>
-                Precio: ${product.price}<br>
+                Price: ${product.price}<br>
                 <br>
             </a></li>
         </c:forEach>
